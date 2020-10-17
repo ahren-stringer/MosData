@@ -6,9 +6,8 @@ import { connect } from 'react-redux';
 
 class NavbarContainer extends React.Component{
     componentDidMount(){
-        axios.get('https://apidata.mos.ru/v1/datasets/495/rows?api_key=c70b711784b712cbe482f9701909fd97',{
-            withCredentials:false,
-        }).then(response=>{
+        axios.get('https://apidata.mos.ru/v1/datasets/495/rows?api_key=c70b711784b712cbe482f9701909fd97')
+        .then(response=>{
             console.log(response.data)
             this.props.setNavData(response.data)
         })
