@@ -1,0 +1,17 @@
+.All {
+    display: grid;
+    width: 900px;
+    grid-template-areas: 
+      "nav info";
+      grid-template-columns: 20% 1fr;
+  }
+  .Navbar{
+    grid-area: nav;
+    border-right: 1px solid;  
+  }
+  .Info{
+    grid-area: info;
+  }
+  .liked{
+    cursor: pointer;
+  }

@@ -1,9 +1,16 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
+import './Header.css'
+
+
 
 function Header() {
-  return (
+  return ( <div className='counter'>
     <div>
-      Header
+      {localStorage.getItem("count")}
+    </div>
+    <NavLink to='/all'>All</NavLink>
+    <NavLink to='/liked'>Liked</NavLink>
     </div>
   );
 }
