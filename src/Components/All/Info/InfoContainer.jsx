@@ -8,14 +8,9 @@ import { withRouter } from 'react-router-dom';
 
 class InfoContainer extends React.Component{
     componentDidMount(){
-        // console.log('mount')
-        debugger
         let id=this.props.match.params.id;
         axios.get(`https://apidata.mos.ru/v1/datasets/495/rows?$skip=${id}&$top=1&api_key=c70b711784b712cbe482f9701909fd97`,{
-            withCredentials:false,
-            headers:{
-                'Access-Control-Allow-Origin': '*'
-            }
+            withCredentials:false
         }).then(response=>{
             console.log(response.data)
             this.props.setInfoData(response.data)

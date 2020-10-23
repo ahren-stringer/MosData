@@ -22,7 +22,31 @@ class Info extends React.Component{
   render(){
     return (
       <div>
-        {String(this.props.infoData[0].Cells.CommonName)}
+        <div>
+          {this.props.infoData[0].Cells.CommonName}
+        </div>
+        <div>
+          Адрес: {this.props.infoData[0].Cells.ObjectAddress[0].Address}
+        </div>
+        <div>
+          Телефоны: {this.props.infoData[0].Cells.PublicPhone.map(item => <div>{item.PublicPhone[0]}</div>)}
+        </div>
+        <div>
+          E-mail: {this.props.infoData[0].Cells.Email[0].Email[0]}
+        </div>
+        <div>
+
+          Часы работ: {this.props.infoData[0].Cells.WorkingHours.map(item => <div>
+            <span>{item.DayWeek}</span>: <span>{item.WorkHours}</span>
+        </div>)}
+
+        </div>
+        <div>
+          Количество залов: {this.props.infoData[0].Cells.NumberOfHalls}
+        </div>
+        <div>
+          Сайт: {this.props.infoData[0].Cells.WebSite}
+        </div>
       </div>
     );
   }

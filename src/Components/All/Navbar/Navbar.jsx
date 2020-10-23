@@ -1,11 +1,17 @@
 import React from 'react';
+import { useEffect } from 'react';
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import s from '../All.module.css'
 
-function Navbar(props) {
+//localStorage.clear()
 
-  let [follow, followFlag]=useState(false)
+function Navbar(props) {
+  let [follow, followFlag]=useState(props.liked)
+
+  useEffect(()=>{
+    followFlag(props.liked)
+  },[props.liked])
 
   const Liked=(name,index)=>{
     let counter=+localStorage.getItem('count');
@@ -18,11 +24,21 @@ function Navbar(props) {
       localStorage.setItem(name,index)
       counter=counter+1
       localStorage.setItem('count',counter)
-      followFlag(true)
+      followFlag(false)
     }
+    props.setCounter(counter)
     console.log(localStorage)
   }
 
+  let pageCount = Math.ceil(props.totalCount / props.onOnePage);
+    let arr = [];
+    for (let i = 1; i <= pageCount; i++) {
+        arr.push(i)
+    }
+  let onPageChange=(numberOfPage)=>{
+      props.onPageChange(numberOfPage)
+  };
+debugger
   return (
     <div>
       {
@@ -33,14 +49,22 @@ function Navbar(props) {
                 {item.Cells.CommonName}
               </div>
             </NavLink>
-            <div className={s.liked} onClick={()=>{Liked(item.Cells.CommonName,index)}}>
+            <div className={s.liked} onClick={()=>{Liked(item.Cells.CommonName
+              ,index)}}>
               Добавить в избранное {
-               !!localStorage.getItem(item.Cells.CommonName)&&<span>+</span>
+               !!localStorage.getItem(item.Cells.CommonName) && <span>+</span>
               }
             </div>
           </div>
         })
       }
+      <div>
+        {
+            arr.map((item, index) => <span className={item === props.numberOfPage ? s.active : ''}
+                onClick={() => {debugger
+                  onPageChange(index) }}>{item}</span>)
+        }
+    </div>
     </div>
   );
 }
