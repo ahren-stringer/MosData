@@ -6,7 +6,7 @@ const SET_PAGE='navReuser/SET-PAGE';
 
 let init = {
     navData: null,
-    names: null,
+    names: [],
     newSearchText: '',
     liked: { ...localStorage },
     totalCount: 1,

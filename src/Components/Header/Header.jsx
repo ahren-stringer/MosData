@@ -3,13 +3,13 @@ import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import './Header.css'
 import SearchingForm from './SearchingForm';
-import {SearchChange} from '../../redux/navReduser';
+import { SearchChange } from '../../redux/navReduser';
 
 class Header extends React.Component {
   state = {
     counter: this.props.counter
   };
-  componentDidUpdate(prevProps,prevState) {
+  componentDidUpdate(prevProps, prevState) {
     if (prevProps.counter !== this.props.counter) {
       this.setState({
         counter: this.props.counter
@@ -18,19 +18,21 @@ class Header extends React.Component {
   };
   render() {
     console.log('render')
-    return (<div className='counter'>
-      <div className="liked">
-        <NavLink to='/liked'>Liked</NavLink>{this.props.counter}
+    return (<div>
+      <div className='counter'>
+        <div className="liked">
+          <NavLink to='/liked'>Liked</NavLink>{this.props.counter}
+        </div>
+        <NavLink to='/all'>All</NavLink>
       </div>
-      <NavLink to='/all'>All</NavLink>
-      {/* <SearchingForm {...this.props}/> */}
+      <SearchingForm {...this.props} />
     </div>
     );
   }
 }
 
-let mapStateToPros=(state)=>{
-  return{
+let mapStateToPros = (state) => {
+  return {
     counter: state.header.count,
     newSearchText: state.navData.newSearchText,
     navData: state.navData.navData,
@@ -38,4 +40,4 @@ let mapStateToPros=(state)=>{
   }
 }
 
-export default connect(mapStateToPros,{SearchChange})(Header);
+export default connect(mapStateToPros, { SearchChange })(Header);
