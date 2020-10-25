@@ -14,11 +14,6 @@ class InfoContainer extends React.Component{
             console.log(response.data)
             this.props.setInfoData(response.data)
         })
-        axios.get(`https://apidata.mos.ru/v1/datasets/495/features?api_key=c70b711784b712cbe482f9701909fd97`)
-        .then(response=>{
-            console.log(response.data)
-            this.props.setFeatures(response.data.features)
-        })
         // axios.get(`https://apidata.mos.ru/v1/datasets/495/features?api_key=c70b711784b712cbe482f9701909fd97`)
         // .then(response=>{
         //     console.log(response.data)
